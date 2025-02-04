@@ -1,0 +1,20 @@
+[
+    {
+        "id": 123,
+        "name" : "Tesa",
+        "image" : "https://i.pravatar.cc/48?u=fake@pravatar.com",
+        "balance" : -7
+    },
+    {
+        "id": 124,
+        "name" : "Budi",
+        "image" : "https://i.pravatar.cc/48?u=fake@pravatar.com",
+        "balance" : 20
+    },
+    {
+        "id": 125,
+        "name" : "Wendy",
+        "image" : "https://i.pravatar.cc/48?u=fake@pravatar.com",
+        "balance" : 100
+    }
+]
