@@ -2,22 +2,25 @@ import { useEffect, useState } from 'react';
 import FormAddFriend from './components/FormAddFriend';
 import FriendList from './components/FriendList';
 
-import "./App.css";
+import './App.css';
 import FormSplitBill from './components/FormSplitBill';
 
 function App() {
   const [friends, setFriends] = useState([]);
-  const [showAddFriend , setShowAddFriend] = useState(false);
+  const [showAddFriend, setShowAddFriend] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
-
-  function handleShowAddFriend(){
+  function handleShowAddFriend() {
     setShowAddFriend((showAddFriend) => !showAddFriend);
   }
 
-  function handleAddFriend(friend){
+  function handleAddFriend(friend) {
     setFriends((friends) => [...friends, friend]);
   }
 
+  function handleShowFriend(friend) {
+    setSelectedFriend((selected) => selected?.id === friend.id ? null : friend);
+  }
 
   useEffect(() => {
     fetch('/data.json') // Assuming data.json is in the public folder
@@ -33,11 +36,12 @@ function App() {
     <div className="app">
       <div className="sidebar">
         <FriendList friends={friends}></FriendList>
-        {showAddFriend && <FormAddFriend onAdd={handleAddFriend}></FormAddFriend>}
-        <button className='button' onClick={handleShowAddFriend}>{showAddFriend ? "Tutup" : "Add Friend"}</button>
+        {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend}></FormAddFriend>}
+        <button className="button" onClick={handleShowAddFriend}>
+          {showAddFriend ? 'Tutup' : 'Add Friend'}
+        </button>
       </div>
-
-      <FormSplitBill />
+      {selectedFriend && <FormSplitBill />}
     </div>
   );
 }

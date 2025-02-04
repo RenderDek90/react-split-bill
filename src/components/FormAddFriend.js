@@ -5,12 +5,24 @@ export default function FormAddFriend({onAddFriend}) {
     const [name , setName] = useState("");
     const [image , setImage] = useState("https://i.pravatar.cc/48");
 
-    function handleSubmit(){
+    function handleSubmit(e){
+        e.preventDefault();
 
+        if(!name || !image) return;
+
+        const id = crypto.randomUUID();
+        const newFriend = {
+            id , name , image : `${image}?=${id}`, balance : 0
+        }
+
+        onAddFriend(newFriend);
+
+        setName("");
+        setImage("https://i.pravatar.cc/48");
     }
 
   return (
-    <form action="">
+    <form action="" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="">Nama</label>
         <input type="text" name="" value={name} onChange={(e) => {
@@ -24,7 +36,7 @@ export default function FormAddFriend({onAddFriend}) {
         }} />
       </div>
 
-      <button>Add</button>
+      <button >Add</button>
     </form>
   );
 }

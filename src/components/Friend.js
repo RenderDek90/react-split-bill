@@ -1,7 +1,7 @@
-export default function Friend({data}) {
+export default function Friend({data , onClickToggle}) {
 
     function handleToggle(){
-        
+
     }
 
   return (
